@@ -1,33 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import PlanCard from './components/PlanCard'
+import imagenGratuito from './assets/gratis.png';
+import imagenPremium from './assets/premium.png';
+import imagenTop from './assets/top.png'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <header className='title'>Elige el plan más adecuado para ti</header>
+      <section className="plan-section">
+        <PlanCard
+          img={imagenGratuito}
+          title='Básico'
+          price='Free'
+          descrip='Este plan es ideal si estás empezando y no necesitas muchas solicitudes. Con este plan, tendrás acceso a 20 solicitudes al mes de forma gratuita.'
+          buttonText='Empieza gratis'
+        />
+
+        <PlanCard
+          img={imagenPremium}
+          featured
+          title='Premium'
+          price='$10 por mes'
+          descrip="Si necesitas más solicitudes, nuestro plan premium es perfecto para ti. Con este plan, tendrás acceso a 1.000 solicitudes al mes por solo $10 dólares."
+          support
+          buttonText='Adquirir plan'
+        />
+
+        <PlanCard
+          img={imagenTop}
+          title='Plan Top'
+          price='30$ por mes'
+          descrip='Si necesitas aún más solicitudes, nuestro plan top es la mejor opción. Con este plan, tendrás acceso a 10.000 solicitudes al mes por solo $30 dólares.'
+          support
+          buttonText='Adquirir plan'
+        />
+      </section>
     </>
   )
 }

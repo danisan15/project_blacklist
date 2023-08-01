@@ -1,42 +1,69 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+:root {
+  font-family: system-ui;
+  color: #fff;
+  --font-color: #fff;
+  --bg-color-button: #323031;
+}
+
+.title {
   text-align: center;
+  font-size: 2.5rem;
+  margin: 1.5rem;
+}
+.plan-card,
+.featured-plan-card {
+  width: 300px;
+  text-align: center;
+  padding: 1.5rem;
+  background: linear-gradient(to bottom, #414345, #232526);
+  font-size: 1.2rem;
+  box-shadow: 1px 1px 10px rgb(0, 0, 0, 0.6);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.featured-plan-card {
+  background: linear-gradient(to bottom, #757f9a, #c2c2c2);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.plan-section {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.featured-plan-card > article,
+.plan-card > article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
 }
 
-.card {
-  padding: 2em;
+article img {
+  width: 60px;
 }
 
-.read-the-docs {
-  color: #888;
+.button-price {
+  background: var(--bg-color-button);
+  border: none;
+  padding: 1rem;
+  font-size: 1.2rem;
+  color: var(--font-color);
+  width: 10rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+
+  
+}
+
+.button-price:active {
+  transform: translateY(10px);
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px
+}
+
+.button-price:hover {
+  background: #413f40;
 }
