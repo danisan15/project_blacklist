@@ -1,0 +1,70 @@
+.flex {
+    margin: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+.tittle {
+    font-size: 2.5rem;
+    margin: 2rem;
+  }
+
+p {
+    font-size: 1.2rem;
+    margin: 2rem;
+  }
+  
+.colLeft {
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+  }
+  
+.colRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+  }
+  
+.formContent {
+    width: 300px;
+    text-align: center;
+    padding: 1rem;
+    background: linear-gradient(to bottom, #414345, #232526);
+    font-size: 1.2rem;
+    box-shadow: 1px 1px 10px rgb(0, 0, 0, 0.6);
+  }
+
+  .formControl {
+    display: grid;
+    gap: 0.6rem;
+    flex: 1;
+  }
+  
+  .btnEmail {
+    background-color: var(--clr-light);
+    font-weight: bold;
+    font-size: 1rem;
+    color: var(--font-color);
+    padding: 1rem 1rem;
+    border-radius: 12px;
+    border: 0;
+    transition: outline 0.5s linear;
+  }
+
+  .btnSubmit {
+    background: linear-gradient(to bottom, var(--clr-lightest), #c2c2c2);
+    margin-top: 1em;
+    padding: 0.7rem 5rem;
+    border-radius: 5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    align-self: flex-end;
+    border: none;
+    cursor: pointer;
+  }
+  

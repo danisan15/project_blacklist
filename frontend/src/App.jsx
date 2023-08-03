@@ -1,4 +1,8 @@
 import PlanCard from './components/PlanCard'
+import Hero from './components/Hero'
+import NavBar from './components/Navbar'
+import Footer from './components/Footer'
+
 import imagenGratuito from './assets/gratis.png';
 import imagenPremium from './assets/premium.png';
 import imagenTop from './assets/top.png'
@@ -8,6 +12,9 @@ function App() {
 
   return (
     <>
+      <NavBar/>
+      <main>
+        <Hero/>
       <header className='title'>Elige el plan más adecuado para ti</header>
       <section className="plan-section">
         <PlanCard
@@ -37,6 +44,8 @@ function App() {
           buttonText='Adquirir plan'
         />
       </section>
+      </main>
+      <Footer/>
     </>
   )
 }

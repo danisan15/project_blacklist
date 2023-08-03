@@ -1,0 +1,38 @@
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    width: 85vw;
+    padding: 1rem 0;
+  }
+  
+  .navGroup {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 4rem;
+  }
+  
+
+  .link {
+    color: var( --font-color);
+  }
+
+  .logo {
+    width: 180px;
+    margin-top: -1rem;
+  }
+
+  .btn {
+    background: linear-gradient(to bottom, var(--clr-lightest), #c2c2c2);
+    padding: 0.7rem 2rem;
+    border-radius: 5rem;
+    font-weight: bold;
+    color: white;
+    align-self: start;
+    transition: box-shadow 0.2s linear;
+    margin-right: -2rem;
+  }
+
