@@ -6,7 +6,7 @@ Please include a summary of the changes and the related issue. Please also inclu
 
 - [ ] Bug fix 🐛
 - [ ] Refactor 🔨
-- [ ] Style 🎨 
+- [ ] Style 🎨
 - [ ] New feature ✨
 - [ ] Breaking change 💥
 - [ ] This change requires a documentation update 📝

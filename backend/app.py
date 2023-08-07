@@ -1,10 +1,14 @@
 from config import SUPABASE_KEY, SUPABASE_URL
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 import supabase
 import requests
 
 # Initialize the Flask app.
 app = Flask(__name__)
+
+#Initialize the CORS extension and specify the allowed origins
+CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5173"}})
 
 # Initialize the Supabase client.
 client = supabase.create_client(SUPABASE_URL, SUPABASE_KEY)
@@ -45,7 +49,7 @@ def verify_email():
     # Verify the email address.
     if verify_email_signup(email) is False:
         # The email address is disposable, so return an error.
-        return jsonify({'message': False}), 403
+        return jsonify({'message': False}), 200
     else:
         # The email address is valid, so return a success message.
         return jsonify({'message': True}), 200
