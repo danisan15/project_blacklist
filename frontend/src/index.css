@@ -3,6 +3,12 @@
   margin: 0;
 }
 
+:root {
+  --clr-darkest: #362E2D;
+  --clr-lightest:#7C8685;
+  --clr-light:#AAACA1;
+}
+
 body {
   background: #303030;
   margin: 0;
