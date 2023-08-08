@@ -1,0 +1,97 @@
+.contentForm {
+  margin: 2rem auto;
+  text-align: center;
+  background: #1f2029;
+  padding: 2rem;
+  width: 400px;
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem;
+  gap: 0.5rem;
+  background-color: #6c757d;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  width: 100%;
+}
+
+.inputGroup input {
+    font-size: 1rem;
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: #fff;
+}
+
+.inputGroup > input::placeholder {
+  color: #fff
+}
+
+.inputGroup > input:focus::placeholder {
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.contentForm button {
+  margin: 1.5rem 0;
+  border: none;
+  border-radius: 2px;
+  font-weight: bold;
+  font-size: .9rem;
+  text-transform: uppercase;
+  padding: 1rem;
+  background-color: #323031 ;
+  color: #f1f1f1;
+  transition: all .1s ease;
+  cursor:pointer;
+}
+
+.contentForm button:hover{
+  background: #414345;
+}
+
+.contentForm button:active {
+  transform: translateY(10px);
+}
+
+.title {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+form > span {
+  display: block;
+  color: #d80032;
+}
+
+form > svg {
+  width: 50px;
+  height: 50px;
+  fill: #f1f1f1
+}
+
+svg {
+  width: 25px;
+  height: 25px;
+  fill: #0f1625d2;
+}
+
+.forgot {
+  display:flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  text-decoration: none;
+  color: #fff;
+}
+
+.forgot:hover {
+  text-decoration: underline #8d99ae;
+}
