@@ -18,6 +18,11 @@
 
   .link {
     color: var( --font-color);
+    text-decoration: underline;
+  }
+
+  .link:hover{
+    cursor: pointer;
   }
 
   .logo {
