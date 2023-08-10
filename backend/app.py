@@ -1,6 +1,7 @@
 from config import SUPABASE_KEY, SUPABASE_URL
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+from datetime import datetime
 import supabase
 import requests
 
@@ -8,8 +9,9 @@ import requests
 app = Flask(__name__)
 
 #Initialize the CORS extension and specify the allowed origins
-CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5173"}})
-
+CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5173",
+                             "methods": ["GET", "POST", "PUT", "DELETE"],
+                             "allow_headers": ["Content-Type", "Authorization"]}})
 # Initialize the Supabase client.
 client = supabase.create_client(SUPABASE_URL, SUPABASE_KEY)
 
@@ -59,20 +61,16 @@ def verify_email():
 def create_user():
 
     # Get the user data from the request.
-    print("part 1")
     user_data = request.get_json()
 
     # Verify the email address.
     if verify_email_signup(user_data["email"]) is False:
-        print("if")
         # The email address is disposable, so return an error.
         return jsonify({"message": False}), 400
     else:
-        print("else")
         # The email address is valid, so create the user.
         email = user_data["email"]
         password = user_data["password"]
-        data = user_data["data"]
         result = client.auth.sign_up({
             "email": email,
             "password": password,
@@ -80,11 +78,7 @@ def create_user():
         users_table = client.table("users")
         user_db = {
             "email": email,
-            "name": data["name"],
-            "password": password,
-            "date_of_creation": data["date_of_creation"],
-            "request_counter": data["request_counter"],
-            "fk_plans": data["fk_plans"]
+            "name": user_data["name"],
         }
         users_table.insert(user_db).execute()
         return jsonify({"res": "Success"}), 200
