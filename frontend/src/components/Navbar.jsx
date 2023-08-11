@@ -3,10 +3,15 @@ import Style from "./Navbar.module.css";
 
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({ isLogged }) {
   const handleScrollToPlans = () => {
     const plansSection = document.getElementById("pricing");
     plansSection.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleClick = () => {
+    localStorage.clear();
+    location.reload();
   };
 
   return (
@@ -48,6 +53,14 @@ export default function Navbar() {
             Registrarse{" "}
           </Link>
         </li>
+        {isLogged ? (
+          <li>
+            <Link className={Style.btn} onClick={handleClick}>
+              {" "}
+              Log out{" "}
+            </Link>
+          </li>
+        ) : null}
       </ul>
     </nav>
   );

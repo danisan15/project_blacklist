@@ -8,13 +8,22 @@ import imagenPremium from "../assets/premium.png";
 import imagenTop from "../assets/top.png";
 
 import "../App.css";
+import { useEffect, useState } from "react";
 
 const LandingPage = () => {
+  const [isLogged, setIsLogged] = useState(false);
+
+  useEffect(() => {
+    const tokenObject = JSON.parse(localStorage.getItem(localStorage.key(0)));
+    const token = tokenObject?.access_token;
+    token ? setIsLogged(true) : setIsLogged(false);
+  }, []);
+
   return (
     <>
-      <NavBar />
+      <NavBar isLogged={isLogged} />
       <main>
-        <Hero />
+        {isLogged ? <Hero /> : null}
         <header className="title">Elige el plan más adecuado para ti</header>
         <section className="plan-section" id="pricing">
           <PlanCard
