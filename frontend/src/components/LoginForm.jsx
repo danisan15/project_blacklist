@@ -1,14 +1,16 @@
-import { Form, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import IconsForm from "./IconsForm";
 import FormSwitchLink from "./FormSwitchLink";
 import styles from "./Forms.module.css";
 import { createClient } from "@supabase/supabase-js";
 
-export default function LoginForm() {
-  const navigate = useNavigate();
+export default function LoginForm(props) {
+  const navigate = props.navigate;
 
-  const client = createClient(VITE_SUPABASE_URL, VITE_SUPABASE_KEY);
+  const client = createClient(
+    process.env.VITE_SUPABASE_URL,
+    process.env.VITE_SUPABASE_KEY
+  );
 
   const {
     register,
@@ -18,7 +20,7 @@ export default function LoginForm() {
   } = useForm();
 
   const onSubmit = handleSubmit(async (data) => {
-    //logica iniciar sesion
+    // Logic for signing in
     const { user, error } = await client.auth.signInWithPassword({
       email: data.email,
       password: data.password,
@@ -26,7 +28,6 @@ export default function LoginForm() {
     if (error) {
       console.error("Login failed:", error.message);
       if (error.message === "Invalid login credentials") {
-        console.log("if");
         setError("email", {
           message: "Email or password is incorrect",
         });
@@ -43,8 +44,6 @@ export default function LoginForm() {
     }
   });
 
-  console.log("errores", errors);
-
   const emailOptions = {
     required: {
       value: true,
@@ -58,6 +57,7 @@ export default function LoginForm() {
       message: "La contraseña es requerida",
     },
   };
+
   return (
     <div className={styles.contentForm}>
       <form onSubmit={onSubmit}>
