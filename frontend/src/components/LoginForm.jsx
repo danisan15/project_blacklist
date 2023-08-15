@@ -28,6 +28,17 @@ export default function LoginForm() {
     });
     if (error) {
       console.error("Login failed:", error.message);
+      if (error.message === "Invalid login credentials") {
+        console.log("if");
+        setError("email", {
+          message: "Email or password is incorrect",
+        });
+        setError("password", {
+          message: "Email or password is incorrect",
+        });
+      } else {
+        alert("Error: " + error.message);
+      }
     } else {
       console.log("Login successful!", user);
       navigate("/");

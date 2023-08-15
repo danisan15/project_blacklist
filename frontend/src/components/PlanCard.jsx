@@ -1,7 +1,16 @@
-const PlanCard = ({img, featured, title, price, descrip, support, buttonText }) => {
-
+const PlanCard = ({
+  img,
+  featured,
+  title,
+  price,
+  descrip,
+  support,
+  buttonText,
+}) => {
   const planClassName = featured ? "featured-plan-card" : "plan-card";
-  const includesSupport = support ? "(Incluye soporte)" : "(No incluye soporte)";
+  const includesSupport = support
+    ? "(Incluye soporte)"
+    : "(No incluye soporte)";
 
   return (
     <div className={planClassName}>
@@ -14,7 +23,7 @@ const PlanCard = ({img, featured, title, price, descrip, support, buttonText }) 
         <button className="button-price">{buttonText}</button>
       </article>
     </div>
-  )
-}
+  );
+};
 
-export default PlanCard
+export default PlanCard;
