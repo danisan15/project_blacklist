@@ -10,7 +10,7 @@ load_dotenv()
 # Initialize the Flask app.
 app = Flask(__name__)
 #Initialize the CORS extension and specify the allowed origins
-CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5173",
+CORS(app, resources={r"/*": {"origins": "https://project-blacklist.vercel.app/",
                              "methods": ["GET", "POST", "PUT", "DELETE"],
                              "allow_headers": ["Content-Type", "Authorization"]}})
 
