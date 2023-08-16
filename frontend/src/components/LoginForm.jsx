@@ -8,8 +8,8 @@ export default function LoginForm(props) {
   const navigate = props.navigate;
 
   const client = createClient(
-    process.env.VITE_SUPABASE_URL,
-    process.env.VITE_SUPABASE_KEY
+    import.meta.env.VITE_SUPABASE_URL,
+    import.meta.env.VITE_SUPABASE_KEY
   );
 
   const {
