@@ -3,9 +3,10 @@ import IconsForm from "./IconsForm";
 import FormSwitchLink from "./FormSwitchLink";
 import styles from "./Forms.module.css";
 import { createClient } from "@supabase/supabase-js";
+import { useNavigate } from "react-router-dom";
 
-export default function LoginForm(props) {
-  const navigate = props.navigate;
+export default function LoginForm() {
+  const navigate = useNavigate();
 
   const client = createClient(
     import.meta.env.VITE_SUPABASE_URL,
