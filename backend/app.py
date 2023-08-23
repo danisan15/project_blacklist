@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from datetime import datetime
 from dotenv import load_dotenv
+from requests.auth import HTTPBasicAuth
 import os
 import supabase
 import requests
@@ -17,6 +18,9 @@ CORS(app, resources={r"/*": {"origins": "https://project-blacklist.vercel.app/",
 
 SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 SUPABASE_URL = os.getenv('SUPABASE_URL')
+
+PAYPAL_CLIENT_ID = os.environ.get('PAYPAL_CLIENT_ID')
+PAYPAL_SECRET_KEY = os.environ.get('PAYPAL_SECRET_KEY')
 
 # Initialize the Supabase client.
 client = supabase.create_client(SUPABASE_URL, SUPABASE_KEY)
@@ -180,6 +184,7 @@ def check_payment_status():
         print("Error checking payment status:", str(e))
         return jsonify(error="Failed to check the payment status"), 500
 
+#PayPal
 
 
 # Run the app.
