@@ -37,8 +37,8 @@ const PlanCard = ({
         "brand_name": "TempBlock",
         "landing_page": "NO_PREFERENCE",
         "user_action": "PAY_NOW",
-        "return_url": "http://localhost:5173/",
-        "cancel_url": "http://localhost:5173/"
+        "return_url": "https://project-blacklist.vercel.app/",
+        "cancel_url": "https://project-blacklist.vercel.app/"
       }
     }
     planTop = JSON.stringify(planTop);
@@ -70,8 +70,8 @@ const PlanCard = ({
         "brand_name": "TempBlock",
         "landing_page": "NO_PREFERENCE",
         "user_action": "PAY_NOW",
-        "return_url": "http://localhost:5173/",
-        "cancel_url": "http://localhost:5173/"
+        "return_url": "https://project-blacklist.vercel.app/",
+        "cancel_url": "https://project-blacklist.vercel.app/"
       }
     }
 
