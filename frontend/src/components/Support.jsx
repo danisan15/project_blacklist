@@ -65,6 +65,11 @@ export default function Support() {
         errorAlert(error);
       })
       .finally(() => setWaiting(false));
+
+    fetch(import.meta.env.VITE_SUPPORT_EMAIL_URL, options)
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
   });
 
   //Condicionales para inputs del formulario

@@ -4,8 +4,11 @@ import IconsForm from "./IconsForm";
 import FormSwitchLink from "./FormSwitchLink";
 import styles from "./Forms.module.css";
 import { createClient } from "@supabase/supabase-js";
+import { useState, useRef } from "react";
 
 export default function LoginForm() {
+  const [errorMsg, setErrorMsg] = useState(false);
+
   const navigate = useNavigate();
 
   const client = createClient(
@@ -29,13 +32,7 @@ export default function LoginForm() {
     if (error) {
       console.error("Login failed:", error.message);
       if (error.message === "Invalid login credentials") {
-        console.log("if");
-        setError("email", {
-          message: "Email or password is incorrect",
-        });
-        setError("password", {
-          message: "Email or password is incorrect",
-        });
+        setErrorMsg("El usuario o la contraseña son incorrectos");
       } else {
         alert("Error: " + error.message);
       }
@@ -86,8 +83,12 @@ export default function LoginForm() {
           />
         </article>
         {errors.password && <span>{errors.password.message}</span>}
+        {errorMsg && <span>{errorMsg}</span>}
 
-        <a href="" className={styles.forgot}>
+        <a
+          className={styles.forgot}
+          onClick={() => navigate("/forgotPassword")}
+        >
           ¿Olvidaste tu contraseña?
         </a>
 
