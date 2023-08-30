@@ -1,7 +1,9 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from datetime import datetime
 from dotenv import load_dotenv
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+import smtplib
 from requests.auth import HTTPBasicAuth
 import os
 import supabase
@@ -11,7 +13,7 @@ load_dotenv()
 # Initialize the Flask app.
 app = Flask(__name__)
 #Initialize the CORS extension and specify the allowed origins
-CORS(app, resources={r"/*": {"origins": "https://project-blacklist.vercel.app/",
+CORS(app, resources={r"/*": {"origins": os.getenv("ORIGIN_URL"),
                              "methods": ["GET", "POST", "PUT", "DELETE"],
                              "allow_headers": ["Content-Type", "Authorization"]}})
 
@@ -92,6 +94,34 @@ def create_user():
         }
         users_table.insert(user_db).execute()
         return jsonify({"res": "Success"}), 200
+    
+@app.route("/support_email", methods=["POST"])
+def support_email():
+    data = request.get_json()
+    email = data["Email"]
+
+
+    # Set up the email message
+    msg = MIMEMultipart()
+    msg['From'] = 'team1blacklist@gmail.com'
+    msg['To'] = email
+    msg['Subject'] = 'Confirmacion de cita'
+    body = f'Tu cita se ha agendado para la fecha {data["Date"]}\n\n Gracias por elegirnos.\n Cordialmente, el equipo de TeamBlock.'
+    msg.attach(MIMEText(body, 'plain'))
+
+    # Connect to the SMTP server
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login('team1blacklist@gmail.com', os.getenv("EMAIL_PASSWORD"))
+
+    # Send the email
+    text = msg.as_string()
+    server.sendmail('team1blacklist@gmail.com', email, text)
+
+    # Close the connection to the SMTP server
+    server.quit()
+
+    return jsonify({"message": "Email sent"}), 200
 
 @app.route("/resend_magic_link", methods=["POST"])
 def resend_magic_link():
@@ -106,83 +136,11 @@ def resend_magic_link():
     }
 
     response = requests.post(url, headers=headers, data=data)
-    print(response.content)
 
     if response.status_code == 200:
         return jsonify({"message":'Magic link sent successfully'}), 200
     else:
         return jsonify({"message": f"Failed to send magic link: {response.status_code}"}), 500
-
-# Endpoint to create a subscription order
-@app.route("/api/subscription/order", methods=["POST"])
-def create_order():
-    try:
-        # Make a request to the Binance API to create the order
-        response = requests.post(
-            "BINANCE_API_ORDER_ENDPOINT",
-            json={
-                # Subscription details (plan, duration, price, etc.)
-            },
-            headers={
-                "Content-Type": "application/json",
-                "X-MBX-APIKEY": "YOUR_BINANCE_API_KEY"
-            }
-        )
-
-        # Return the order data to the frontend
-        return jsonify(response.json())
-    except Exception as e:
-        print("Error creating order:", str(e))
-        return jsonify(error="Failed to create the subscription order"), 500
-
-# Endpoint to generate the payment URL or QR code
-@app.route("/api/subscription/paymentUrl", methods=["POST"])
-def generate_payment_url():
-    try:
-        data = request.get_json()
-        order_id = data["orderId"]
-
-        # Make a request to the Binance API to generate the payment URL
-        response = requests.post(
-            "BINANCE_API_PAYMENT_URL_ENDPOINT",
-            json={
-                "orderId": order_id,
-                # Additional parameters if required
-            },
-            headers={
-                "Content-Type": "application/json",
-                "X-MBX-APIKEY": "YOUR_BINANCE_API_KEY"
-            }
-        )
-
-        # Return the payment URL or QR code to the frontend
-        return jsonify(paymentUrl=response.json()["paymentUrl"])
-    except Exception as e:
-        print("Error generating payment URL:", str(e))
-        return jsonify(error="Failed to generate the payment URL"), 500
-
-# Endpoint to check the payment status
-@app.route("/api/subscription/paymentStatus", methods=["GET"])
-def check_payment_status():
-    try:
-        order_id = request.args.get("orderId")
-
-        # Make a request to the Binance API to check the payment status
-        response = requests.get(
-            "BINANCE_API_PAYMENT_STATUS_ENDPOINT",
-            params={
-                "orderId": order_id
-            },
-            headers={
-                "X-MBX-APIKEY": "YOUR_BINANCE_API_KEY"
-            }
-        )
-
-        # Return the payment status to the frontend
-        return jsonify(status=response.json()["status"])
-    except Exception as e:
-        print("Error checking payment status:", str(e))
-        return jsonify(error="Failed to check the payment status"), 500
 
 #PayPal
 

@@ -2,6 +2,7 @@ import PlanCard from "./PlanCard";
 import Hero from "./Hero";
 import NavBar from "./Navbar";
 import Footer from "./Footer";
+import Support from "./Support";
 
 import imagenGratuito from "../assets/gratis.png";
 import imagenPremium from "../assets/premium.png";
@@ -25,6 +26,7 @@ const LandingPage = () => {
       <main>
         {isLogged ? <Hero /> : null}
         <header className="title">Elige el plan más adecuado para ti</header>
+
         <section className="plan-section" id="pricing">
           <PlanCard
             img={imagenGratuito}
@@ -55,6 +57,11 @@ const LandingPage = () => {
             buttonText="Adquirir plan"
           />
         </section>
+        {isLogged ? (
+          <section className="support-section" id="support">
+            <Support />
+          </section>
+        ) : null}
       </main>
       <Footer />
     </>

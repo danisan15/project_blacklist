@@ -94,4 +94,5 @@ svg {
 
 .forgot:hover {
   text-decoration: underline #8d99ae;
+  cursor: pointer;
 }

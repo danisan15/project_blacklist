@@ -4,9 +4,10 @@ import Style from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 
 export default function Navbar({ isLogged }) {
-  const handleScrollToPlans = () => {
-    const plansSection = document.getElementById("pricing");
-    plansSection.scrollIntoView({ behavior: "smooth" });
+  const handleScroll = ({ id }) => {
+    const splitId = id.split("-");
+    const scrollElement = document.getElementById(splitId[0]);
+    scrollElement.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleClick = () => {
@@ -24,17 +25,27 @@ export default function Navbar({ isLogged }) {
         </li>
 
         <li>
-          <a className={Style.link} onClick={handleScrollToPlans}>
+          <a
+            className={Style.link}
+            onClick={({ target }) => handleScroll(target)}
+            id="pricing-link"
+          >
             {" "}
             Planes{" "}
           </a>
         </li>
 
-        <li>
-          <a className={Style.link} href="#contact">
-            Contacto{" "}
-          </a>
-        </li>
+        {isLogged ? (
+          <li>
+            <a
+              className={Style.link}
+              onClick={({ target }) => handleScroll(target)}
+              id="support-link"
+            >
+              Soporte
+            </a>
+          </li>
+        ) : null}
 
         <li>
           <img className={Style.logo} src={Logo} />

@@ -4,20 +4,25 @@ import Style from "./Hero.module.css";
 export default function Hero() {
   const [email, setEmail] = useState("");
   const [isValid, setIsValid] = useState(0);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     console.log(isValid);
+    setIsValid(0);
   }, [isValid]);
 
   const handleChange = (e) => {
     e.preventDefault();
     setEmail(e.target.value);
+    setErrorMessage("");
+    setSuccessMessage("");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email.length === 0) return alert("Inserte el email");
-    const URL = "http://127.0.0.1:5000/verify_email";
+    const URL = import.meta.env.VITE_VERIFY_EMAIL_URL;
     const request = {
       method: "POST",
       headers: {
@@ -29,7 +34,20 @@ export default function Hero() {
     fetch(URL, request)
       .then((response) => response.json())
       .then((data) => {
-        data.message ? setIsValid(true) : setIsValid(false);
+        if (data.message) {
+          setIsValid(true);
+          setErrorMessage("");
+          setSuccessMessage("El email es valido");
+        } else {
+          setIsValid(false);
+          setErrorMessage("El email es malicioso");
+          setSuccessMessage("");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorMessage("Hubo un error al verificar el correo");
+        setSuccessMessage("");
       });
   };
 
@@ -46,7 +64,6 @@ export default function Hero() {
           <br /> mediante una <b>Black List.</b>
         </p>
       </div>
-
       <div className={Style.colRight}>
         <form
           action=""
@@ -62,6 +79,14 @@ export default function Hero() {
             onChange={(e) => handleChange(e)}
           />
           <input type="submit" value="Buscar" className={Style.btnSubmit} />
+          {errorMessage && (
+            <p style={{ color: "red", marginTop: "10px" }}>{errorMessage}</p>
+          )}
+          {successMessage && (
+            <p style={{ color: "green", marginTop: "10px" }}>
+              {successMessage}
+            </p>
+          )}
         </form>
       </div>
     </section>
