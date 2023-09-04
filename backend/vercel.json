@@ -1,12 +1,21 @@
 {
-    "builds": [
-      { "src": "app.py", "use": "@vercel/python" }
-    ],
-    "routes": [
-      { "src": "/(.*)", "dest": "app.py" }
-    ],
-    "env": {
-      "FLASK_APP": "app.py",
-      "FLASK_ENV": "production"
+  "version": 2,
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/app.py"
     }
+  ],
+  "builds": [
+    {
+      "src": "app.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "env": {
+    "SUPABASE_URL": "https://wajvmgkjzmyijwlaxbjl.supabase.co",
+    "SUPABASE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndhanZtZ2tqem15aWp3bGF4YmpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTA2Njg1MjcsImV4cCI6MjAwNjI0NDUyN30.-0DqdCpYeHKZ615PagvK65ga2j13nKFQdZHFuNHfoQc",
+    "EMAIL_PASSWORD": "zausuerzpesujnmb",
+    "ORIGIN_URL": "https://project-blacklist.vercel.app"
   }
+}
