@@ -1,9 +1,23 @@
 {
-  "functions": {
-    "api/**/*": {
-      "runtime": "python3.11",
-      "memory": 512,
-      "maxDuration": 10
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.py",
+      "use": "@vercel/python"
     }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/app.py"
+    }
+  ],
+  "env": {
+    "SUPABASE_URL":"https://wajvmgkjzmyijwlaxbjl.supabase.co",
+    "SUPABASE_KEY":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndhanZtZ2tqem15aWp3bGF4YmpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTA2Njg1MjcsImV4cCI6MjAwNjI0NDUyN30.-0DqdCpYeHKZ615PagvK65ga2j13nKFQdZHFuNHfoQc",
+    "EMAIL_PASSWORD":"zausuerzpesujnmb",
+    "ORIGIN_URL":"https://vercel.com/danisan15/project-blacklist",
+    "PAYPAL_CLIENT_ID":"gXX1pPxKk7D9sfAS5b6WdwBaIp9vLdTAsirkWpbQPNXytKUyzR0ORkPDZwkYsrfL",
+    "PAYPAL_SECRET_KEY":"krsSCEHOwoDoEwWcGUkMEpeRZPtGBfJbz245UryHpjcEjhgrt26CRa4Orw2YiNDg"
   }
 }
