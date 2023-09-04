@@ -41,6 +41,10 @@ def verify_email_signup(email):
         return False
     else:
         return True
+    
+@app.route("/")
+def initialize():
+    return jsonify({"message": "Hello, world!"})
 
 # Define a route for retrieving all users from the database.
 @app.route('/users', methods=['GET'])
