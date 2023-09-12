@@ -13,7 +13,8 @@ load_dotenv()
 # Initialize the Flask app.
 app = Flask(__name__)
 #Initialize the CORS extension and specify the allowed origins
-CORS(app, origin=[os.getenv("ORIGIN_URL")])
+cors_url = os.getenv("ORIGIN_URL")
+CORS(app, origin=[cors_url])
 
 
 SUPABASE_KEY = os.getenv('SUPABASE_KEY')
