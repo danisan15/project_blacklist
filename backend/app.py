@@ -14,9 +14,7 @@ load_dotenv()
 app = Flask(__name__)
 #Initialize the CORS extension and specify the allowed origins
 
-CORS(app, resources={r"/*": {"origins": "https://project-blacklist.vercel.app/",
-                             "methods": ["GET", "POST", "PUT", "DELETE"],
-                             "allow_headers": ["Content-Type", "Authorization"]}})
+CORS(app)
 
 
 SUPABASE_KEY = os.getenv('SUPABASE_KEY')
