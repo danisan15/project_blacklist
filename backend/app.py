@@ -13,7 +13,9 @@ load_dotenv()
 # Initialize the Flask app.
 app = Flask(__name__)
 #Initialize the CORS extension and specify the allowed origins
-CORS(app, resources={r"/*": {"origins": os.getenv("ORIGIN_URL"),
+cors_url = os.getenv("ORIGIN_URL")
+
+CORS(app, resources={r"/*": {"origins": cors_url,
                              "methods": ["GET", "POST", "PUT", "DELETE"],
                              "allow_headers": ["Content-Type", "Authorization"]}})
 
