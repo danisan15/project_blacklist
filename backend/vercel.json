@@ -11,8 +11,7 @@
       "PAYPAL_CLIENT_ID":"gXX1pPxKk7D9sfAS5b6WdwBaIp9vLdTAsirkWpbQPNXytKUyzR0ORkPDZwkYsrfL",
       "PAYPAL_SECRET_KEY":"krsSCEHOwoDoEwWcGUkMEpeRZPtGBfJbz245UryHpjcEjhgrt26CRa4Orw2YiNDg"
     }
-  },
-  "functions": { "api/**/*.{py,js}": {} }
+  }
 }
 
 
