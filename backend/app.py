@@ -9,7 +9,7 @@ import os
 import supabase
 import requests
 
-load_dotenv()
+load_dotenv()gunicorn app:app --workers=4 --bind=0.0.0.0:$PORT --timeout=120
 # Initialize the Flask app.
 app = Flask(__name__)
 #Initialize the CORS extension and specify the allowed origins
