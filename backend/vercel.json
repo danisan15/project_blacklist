@@ -14,7 +14,15 @@
     { "src": "/resend_magic_link", "dest": "app.py" },
     { "src": "/create_order", "dest": "app.py" },
     { "src": "/complete_order", "dest": "app.py" },
-    { "src": "/(.*)", "dest": "app.py" }
+    {
+      "src": "/(.*)",
+      "dest": "main.py",
+      "headers": {
+        "Access-Control-Allow-Origin": "https://project-blacklist.vercel.app/",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+      }
+    }
   ],
   "build": {
     "env": {
