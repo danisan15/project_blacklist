@@ -16,7 +16,7 @@
     { "src": "/complete_order", "dest": "app.py" },
     {
       "src": "/(.*)",
-      "dest": "main.py",
+      "dest": "app.py",
       "headers": {
         "Access-Control-Allow-Origin": "https://project-blacklist.vercel.app/",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
