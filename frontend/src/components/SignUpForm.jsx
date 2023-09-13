@@ -14,7 +14,7 @@ export default function Form() {
 
   const onSubmit = handleSubmit((data) => {
     //Logica registrar usuario
-    const URL = "http://127.0.0.1:5000/create_user";
+    const URL = import.meta.env.VITE_CREATE_USER;
     const configurationObject = {
       method: "POST",
       headers: {
