@@ -7,7 +7,14 @@
   }
 ],
   "routes": [
-      { "src": "/", "dest": "/app.py" }
+    { "src": "/users", "dest": "app.py" },
+    { "src": "/verify_email", "dest": "app.py" },
+    { "src": "/create_user", "dest": "app.py" },
+    { "src": "/support_email", "dest": "app.py" },
+    { "src": "/resend_magic_link", "dest": "app.py" },
+    { "src": "/create_order", "dest": "app.py" },
+    { "src": "/complete_order", "dest": "app.py" },
+    { "src": "/(.*)", "dest": "app.py" }
   ],
   "build": {
     "env": {
