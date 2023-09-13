@@ -14,7 +14,7 @@ load_dotenv()
 app = Flask(__name__)
 #Initialize the CORS extension and specify the allowed origins
 cors_url = os.getenv("ORIGIN_URL")
-CORS(app, origin=[cors_url])
+CORS(app, resources={r"/*": {"origins": cors_url}})
 
 
 SUPABASE_KEY = os.getenv('SUPABASE_KEY')
@@ -204,4 +204,4 @@ def complete_order():
 
 # Run the app.
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=False, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
