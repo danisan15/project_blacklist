@@ -3,6 +3,7 @@ import Hero from "./Hero";
 import NavBar from "./Navbar";
 import Footer from "./Footer";
 import Support from "./Support";
+import NoHero from "./NoHero";
 
 import imagenGratuito from "../assets/gratis.png";
 import imagenPremium from "../assets/premium.png";
@@ -24,26 +25,7 @@ const LandingPage = () => {
     <>
       <NavBar isLogged={isLogged} />
       <main>
-        {isLogged ? (
-          <Hero />
-        ) : (
-          <>
-            <section className="title-section">
-              <div>
-                <h1> ¡Olvídate de los correos temporales! </h1>
-
-                <p>
-                  {" "}
-                  Mantén limpio y seguro tu base de datos con nuestra
-                  plataforma.
-                  <br /> <br />
-                  <b>TempBlock</b> detecta esos correos con dominio insano
-                  <br /> mediante una <b>Black List.</b>
-                </p>
-              </div>
-            </section>
-          </>
-        )}
+        {isLogged ? <Hero /> : <NoHero />}
 
         <header className="title">Elige el plan más adecuado para ti</header>
 
