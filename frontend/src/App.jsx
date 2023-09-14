@@ -17,8 +17,8 @@ function App() {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/confirmEmail" element={<ConfirmEmail />} />
         <Route path="/support" element={<Support />} />
-        <Route path="/forgotPassword" element={<ForgotPassword />} />
-        <Route path="/updatePassword" element={<UpdatePassword />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/update-password" element={<UpdatePassword />} />
       </Routes>
     </Router>
   );
