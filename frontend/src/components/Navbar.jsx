@@ -51,19 +51,6 @@ export default function Navbar({ isLogged }) {
           <img className={Style.logo} src={Logo} />
         </li>
 
-        <li>
-          <Link className={Style.btn} to="/login">
-            {" "}
-            Iniciar Sesión{" "}
-          </Link>
-        </li>
-
-        <li>
-          <Link className={Style.btn} to="/signup">
-            {" "}
-            Registrarse{" "}
-          </Link>
-        </li>
         {isLogged ? (
           <li>
             <Link className={Style.btn} onClick={handleClick}>
@@ -71,7 +58,23 @@ export default function Navbar({ isLogged }) {
               Log out{" "}
             </Link>
           </li>
-        ) : null}
+        ) : (
+          <>
+            <li>
+              <Link className={Style.btn} to="/login">
+                {" "}
+                Iniciar Sesión{" "}
+              </Link>
+            </li>
+
+            <li>
+              <Link className={Style.btn} to="/signup">
+                {" "}
+                Registrarse{" "}
+              </Link>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   );
