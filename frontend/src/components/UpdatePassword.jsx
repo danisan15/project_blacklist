@@ -77,7 +77,7 @@ const UpdatePassword = () => {
           <span>{errors.confirmPassword.message}</span>
         )}
 
-        <button></button>
+        <button>Enviar</button>
       </form>
     </div>
   );
