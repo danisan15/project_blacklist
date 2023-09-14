@@ -24,7 +24,27 @@ const LandingPage = () => {
     <>
       <NavBar isLogged={isLogged} />
       <main>
-        {isLogged ? <Hero /> : null}
+        {isLogged ? (
+          <Hero />
+        ) : (
+          <>
+            <section className="title-section">
+              <div>
+                <h1> ¡Olvídate de los correos temporales! </h1>
+
+                <p>
+                  {" "}
+                  Mantén limpio y seguro tu base de datos con nuestra
+                  plataforma.
+                  <br /> <br />
+                  <b>TempBlock</b> detecta esos correos con dominio insano
+                  <br /> mediante una <b>Black List.</b>
+                </p>
+              </div>
+            </section>
+          </>
+        )}
+
         <header className="title">Elige el plan más adecuado para ti</header>
 
         <section className="plan-section" id="pricing">
@@ -50,7 +70,7 @@ const LandingPage = () => {
           <PlanCard
             img={imagenTop}
             title="Plan Top"
-            planPaid='plan top'
+            planPaid="plan top"
             price="30$ por mes"
             descrip="Si necesitas aún más solicitudes, nuestro plan top es la mejor opción. Con este plan, tendrás acceso a 10.000 solicitudes al mes por solo $30 dólares."
             support
