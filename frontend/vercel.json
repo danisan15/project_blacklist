@@ -5,7 +5,7 @@
     { "source": "/login", "destination": "/" },
     { "source": "/confirmEmail", "destination": "/" },
     { "source": "/support", "destination": "/" },
-    { "source": "/forgot", "destination": "/" },
-    { "source": "/update", "destination": "/" }
+    { "source": "/forgot_password", "destination": "/" },
+    { "source": "/update_password", "destination": "/" }
   ]
 }
