@@ -90,10 +90,7 @@ export default function LoginForm() {
         {errors.password && <span>{errors.password.message}</span>}
         {errorMsg && <span>{errorMsg}</span>}
 
-        <a
-          className={styles.forgot}
-          onClick={() => navigate("/forgotPassword")}
-        >
+        <a className={styles.forgot} onClick={() => navigate("/forgot")}>
           ¿Olvidaste tu contraseña?
         </a>
 
