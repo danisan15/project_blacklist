@@ -1,0 +1,11 @@
+{
+    "rewrites": [
+    { "source": "/", "destination": "/" },
+    { "source": "/signup", "destination": "/" },
+    { "source": "/login", "destination": "/" },
+    { "source": "/confirmEmail", "destination": "/" },
+    { "source": "/support", "destination": "/" },
+    { "source": "/forgot", "destination": "/" },
+    { "source": "/update", "destination": "/" }
+  ]
+}
