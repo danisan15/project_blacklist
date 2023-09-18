@@ -14,7 +14,7 @@ const PlanCard = ({
     ? "(Incluye soporte)"
     : "(No incluye soporte)";
 
-  async function fetchingData(params, url = import.meta.env.VITE_CREATE_USER) {
+  async function fetchingData(params, url = import.meta.env.VITE_CREATE_ORDER) {
     const res = await fetch(url, params);
     const data = await res.json();
     window.location.href = data;
