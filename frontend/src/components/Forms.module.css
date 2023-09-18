@@ -92,6 +92,18 @@ svg {
   color: #fff;
 }
 
+.btn {
+  background: linear-gradient(to bottom, var(--clr-lightest), #c2c2c2);
+  padding: 0.7rem 2rem;
+  border-radius: 5rem;
+  font-weight: bold;
+  color: white;
+  align-self: start;
+  transition: box-shadow 0.2s linear;
+  margin-right: -2rem;
+}
+
+
 .forgot:hover {
   text-decoration: underline #8d99ae;
   cursor: pointer;

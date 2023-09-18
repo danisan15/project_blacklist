@@ -1,9 +1,10 @@
 import styles from "./Forms.module.css";
-import { Form, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import IconsForm from "./IconsForm";
 import { useNavigate } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const ForgotPassword = () => {
   const [successMsg, setSuccessMsg] = useState(false);
@@ -51,31 +52,33 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className={styles.contentForm}>
-      <form onSubmit={onSubmit}>
-        <p className={styles.title}>recuperar contraseña</p>
-        <IconsForm type="login" />
-        <article className={styles.inputGroup}>
-          <IconsForm type="email" />
-          <input
-            type="email"
-            placeholder="Ingresa correo"
-            autoComplete="off"
-            {...register("email", emailOptions)}
-          />
-        </article>
-        {errors.email && <span>{errors.email.message}</span>}
-        {successMsg && <span>{successMsg}</span>}
-        <a className={styles.forgot} onClick={() => navigate("/login")}>
-          Volver
-        </a>
-        {counter === 0 ? (
-          <button>Enviar</button>
-        ) : (
-          <button disabled>{counter}</button>
-        )}
-      </form>
-    </div>
+    <>
+      <Link className={styles.btn} to="/login">
+        Volver
+      </Link>
+      <div className={styles.contentForm}>
+        <form onSubmit={onSubmit}>
+          <p className={styles.title}>recuperar contraseña</p>
+          <IconsForm type="login" />
+          <article className={styles.inputGroup}>
+            <IconsForm type="email" />
+            <input
+              type="email"
+              placeholder="Ingresa correo"
+              autoComplete="off"
+              {...register("email", emailOptions)}
+            />
+          </article>
+          {errors.email && <span>{errors.email.message}</span>}
+          {successMsg && <span>{successMsg}</span>}
+          {counter === 0 ? (
+            <button>Enviar</button>
+          ) : (
+            <button disabled>{counter}</button>
+          )}
+        </form>
+      </div>
+    </>
   );
 };
 

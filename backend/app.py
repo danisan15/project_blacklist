@@ -151,7 +151,7 @@ def resend_magic_link():
 def generateToken():
     """Generate access token"""
     url = "https://api-m.sandbox.paypal.com/v1/oauth2/token"
-    data = "grant_type=client_credentials"
+    data = {"grant_type": "client_credentials"}
     headers = {
         "Content-Type": "application/x-www-form-urlencoded"
     }

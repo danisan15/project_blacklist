@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import IconsForm from "./IconsForm";
 import FormSwitchLink from "./FormSwitchLink";
+import { Link } from "react-router-dom";
+
 import styles from "./Forms.module.css";
 
 export default function Form() {
@@ -79,64 +81,69 @@ export default function Form() {
   };
 
   return (
-    <div className={styles.contentForm}>
-      <form onSubmit={onSubmit}>
-        <p className={styles.title}>crear cuenta</p>
-        <IconsForm type="signup" />
-        <article className={styles.inputGroup}>
-          <IconsForm type="name" />
+    <>
+      <Link className={styles.btn} to="/">
+        Inicio
+      </Link>
+      <div className={styles.contentForm}>
+        <form onSubmit={onSubmit}>
+          <p className={styles.title}>crear cuenta</p>
+          <IconsForm type="signup" />
+          <article className={styles.inputGroup}>
+            <IconsForm type="name" />
 
-          <input
-            type="text"
-            placeholder="Ingresa tu nombre"
-            autoComplete="off"
-            {...register("name", nameOptions)}
+            <input
+              type="text"
+              placeholder="Ingresa tu nombre"
+              autoComplete="off"
+              {...register("name", nameOptions)}
+            />
+          </article>
+          {errors.name && <span>{errors.name.message}</span>}
+
+          <article className={styles.inputGroup}>
+            <IconsForm type="email" />
+            <input
+              type="email"
+              placeholder="Ingresa correo"
+              autoComplete="off"
+              {...register("email", emailOptions)}
+            />
+          </article>
+          {errors.email && <span>{errors.email.message}</span>}
+
+          <article className={styles.inputGroup}>
+            <IconsForm type="password" />
+            <input
+              type="password"
+              placeholder="Crear contraseña"
+              {...register("password", passwordOptions)}
+            />
+          </article>
+          {errors.password && <span>{errors.password.message}</span>}
+
+          <article className={styles.inputGroup}>
+            <IconsForm type="confirmPassword" />
+            <input
+              type="password"
+              placeholder="Confirmar contraseña"
+              {...register("confirmPassword", confirmPasswordOptions)}
+            />
+          </article>
+          {errors.confirmPassword && (
+            <span>{errors.confirmPassword.message}</span>
+          )}
+
+          <button>continuar</button>
+
+          <FormSwitchLink
+            isSignUp
+            spanText="¿Tienes cuenta?"
+            linkText="Inicia sesión"
+            to="/login"
           />
-        </article>
-        {errors.name && <span>{errors.name.message}</span>}
-
-        <article className={styles.inputGroup}>
-          <IconsForm type="email" />
-          <input
-            type="email"
-            placeholder="Ingresa correo"
-            autoComplete="off"
-            {...register("email", emailOptions)}
-          />
-        </article>
-        {errors.email && <span>{errors.email.message}</span>}
-
-        <article className={styles.inputGroup}>
-          <IconsForm type="password" />
-          <input
-            type="password"
-            placeholder="Crear contraseña"
-            {...register("password", passwordOptions)}
-          />
-        </article>
-        {errors.password && <span>{errors.password.message}</span>}
-
-        <article className={styles.inputGroup}>
-          <IconsForm type="confirmPassword" />
-          <input
-            type="password"
-            placeholder="Confirmar contraseña"
-            {...register("confirmPassword", confirmPasswordOptions)}
-          />
-        </article>
-        {errors.confirmPassword && (
-          <span>{errors.confirmPassword.message}</span>
-        )}
-
-        <button>continuar</button>
-
-        <FormSwitchLink
-          isSignUp
-          spanText="¿Tienes cuenta?"
-          linkText="Inicia sesión"
-          to="/login"
-        />
-      </form>
-    </div>
+        </form>
+      </div>
+    </>
   );
 }

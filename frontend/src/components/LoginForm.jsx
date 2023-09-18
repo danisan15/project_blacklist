@@ -4,7 +4,8 @@ import FormSwitchLink from "./FormSwitchLink";
 import styles from "./Forms.module.css";
 import { createClient } from "@supabase/supabase-js";
 import { useNavigate } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function LoginForm() {
   const [errorMsg, setErrorMsg] = useState(false);
@@ -64,47 +65,52 @@ export default function LoginForm() {
   };
 
   return (
-    <div className={styles.contentForm}>
-      <form onSubmit={onSubmit}>
-        <p className={styles.title}>iniciar sesion</p>
-        <IconsForm type="login" />
-        <article className={styles.inputGroup}>
-          <IconsForm type="email" />
-          <input
-            type="email"
-            placeholder="Ingresa correo"
-            autoComplete="off"
-            {...register("email", emailOptions)}
+    <>
+      <Link className={styles.btn} to="/">
+        Inicio
+      </Link>
+      <div className={styles.contentForm}>
+        <form onSubmit={onSubmit}>
+          <p className={styles.title}>iniciar sesion</p>
+          <IconsForm type="login" />
+          <article className={styles.inputGroup}>
+            <IconsForm type="email" />
+            <input
+              type="email"
+              placeholder="Ingresa correo"
+              autoComplete="off"
+              {...register("email", emailOptions)}
+            />
+          </article>
+          {errors.email && <span>{errors.email.message}</span>}
+
+          <article className={styles.inputGroup}>
+            <IconsForm type="password" />
+            <input
+              type="password"
+              placeholder="Ingresa contraseña"
+              {...register("password", passwordOptions)}
+            />
+          </article>
+          {errors.password && <span>{errors.password.message}</span>}
+          {errorMsg && <span>{errorMsg}</span>}
+
+          <a
+            className={styles.forgot}
+            onClick={() => navigate("/forgot_password")}
+          >
+            ¿Olvidaste tu contraseña?
+          </a>
+
+          <button>entrar</button>
+
+          <FormSwitchLink
+            spanText="¿No tienes cuenta?"
+            linkText="Regístrate"
+            to="/signup"
           />
-        </article>
-        {errors.email && <span>{errors.email.message}</span>}
-
-        <article className={styles.inputGroup}>
-          <IconsForm type="password" />
-          <input
-            type="password"
-            placeholder="Ingresa contraseña"
-            {...register("password", passwordOptions)}
-          />
-        </article>
-        {errors.password && <span>{errors.password.message}</span>}
-        {errorMsg && <span>{errorMsg}</span>}
-
-        <a
-          className={styles.forgot}
-          onClick={() => navigate("/forgot_password")}
-        >
-          ¿Olvidaste tu contraseña?
-        </a>
-
-        <button>entrar</button>
-
-        <FormSwitchLink
-          spanText="¿No tienes cuenta?"
-          linkText="Regístrate"
-          to="/signup"
-        />
-      </form>
-    </div>
+        </form>
+      </div>
+    </>
   );
 }
