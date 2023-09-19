@@ -16,10 +16,8 @@ const PlanCard = ({
 
   async function fetchingData(params, url = import.meta.env.VITE_CREATE_ORDER) {
     const res = await fetch(url, params);
-    console.log(res);
-    const data = await res.json();
-    console.log(data);
-    window.location.href = data;
+    const data = await res.text();
+    window.location.href = data.replace(/"/g, "");
   }
 
   const planTop = async () => {
