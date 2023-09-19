@@ -7,5 +7,16 @@
     { "source": "/support", "destination": "/" },
     { "source": "/forgot_password", "destination": "/" },
     { "source": "/update_password", "destination": "/" }
-  ]
+  ],
+  "build": {
+    "env": {
+      "VITE_SUPABASE_URL": "https://wajvmgkjzmyijwlaxbjl.supabase.co",
+      "VITE_SUPABASE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndhanZtZ2tqem15aWp3bGF4YmpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTA2Njg1MjcsImV4cCI6MjAwNjI0NDUyN30.-0DqdCpYeHKZ615PagvK65ga2j13nKFQdZHFuNHfoQc",
+      "VITE_UPDATE_PASSWORD_URL": "https://project-blacklist-backend.vercel.app/updatePassword",
+      "VITE_VERIFY_EMAIL_URL": "https://project-blacklist-backend.vercel.app/verify_email",
+      "VITE_SUPPORT_EMAIL_URL": "https://project-blacklist-backend.vercel.app/support_email",
+      "VITE_CREATE_USER": "https://project-blacklist-backend.vercel.app/create_user",
+      "VITE_CREATE_ORDER": "https://project-blacklist-backend.vercel.app/create_order"
+    }
+  }
 }
