@@ -16,7 +16,9 @@ const PlanCard = ({
 
   async function fetchingData(params, url = import.meta.env.VITE_CREATE_ORDER) {
     const res = await fetch(url, params);
+    console.log(res);
     const data = await res.json();
+    console.log(data);
     window.location.href = data;
   }
 
