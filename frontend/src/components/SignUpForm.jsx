@@ -1,11 +1,19 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import IconsForm from "./IconsForm";
 import FormSwitchLink from "./FormSwitchLink";
 import { Link } from "react-router-dom";
 
 import styles from "./Forms.module.css";
+import DropdownBar from "./DropdownBar";
 
 export default function Form() {
+  const [selectedOption, setSelectedOption] = useState("free");
+
+  const handleChange = (currentValue) => {
+    setSelectedOption(currentValue);
+  };
+
   const {
     register,
     handleSubmit,
@@ -133,6 +141,8 @@ export default function Form() {
           {errors.confirmPassword && (
             <span>{errors.confirmPassword.message}</span>
           )}
+
+          <DropdownBar handleChange={handleChange} />
 
           <button>continuar</button>
 

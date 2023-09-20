@@ -36,6 +36,7 @@ const LandingPage = () => {
             price="Free"
             descrip="Este plan es ideal si estás empezando y no necesitas muchas solicitudes. Con este plan, tendrás acceso a 20 solicitudes al mes de forma gratuita."
             buttonText="Empieza gratis"
+            isLogged={isLogged}
           />
 
           <PlanCard
@@ -47,6 +48,7 @@ const LandingPage = () => {
             descrip="Si necesitas más solicitudes, nuestro plan premium es perfecto para ti. Con este plan, tendrás acceso a 1.000 solicitudes al mes por solo $10 dólares."
             support
             buttonText="Adquirir plan"
+            isLogged={isLogged}
           />
 
           <PlanCard
@@ -57,6 +59,7 @@ const LandingPage = () => {
             descrip="Si necesitas aún más solicitudes, nuestro plan top es la mejor opción. Con este plan, tendrás acceso a 10.000 solicitudes al mes por solo $30 dólares."
             support
             buttonText="Adquirir plan"
+            isLogged={isLogged}
           />
         </section>
         {isLogged ? (

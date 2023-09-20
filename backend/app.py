@@ -156,8 +156,8 @@ def generateToken():
         "Content-Type": "application/x-www-form-urlencoded"
     }
     response = requests.post(url, auth=HTTPBasicAuth(PAYPAL_CLIENT_ID, PAYPAL_SECRET_KEY),data=data, headers=headers)
-
     response = response.json()
+    
     return response['access_token']
 
 # @app.after_request
