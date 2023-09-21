@@ -16,7 +16,12 @@
       "VITE_VERIFY_EMAIL_URL": "https://project-blacklist-backend.vercel.app/verify_email",
       "VITE_SUPPORT_EMAIL_URL": "https://project-blacklist-backend.vercel.app/support_email",
       "VITE_CREATE_USER": "https://project-blacklist-backend.vercel.app/create_user",
-      "VITE_CREATE_ORDER": "https://project-blacklist-backend.vercel.app/create_order"
+      "VITE_CREATE_ORDER": "https://project-blacklist-backend.vercel.app/create_order",
+      "VITE_ORIGIN_URL": "https://project-blacklist.vercel.app",
+      "VITE_SIGN_UP": "https://project-blacklist.vercel.app/signup",
+      "VITE_COMPLETE_ORDER": "https://project-blacklist-backend.vercel.app/complete_order"
     }
   }
 }
+
+

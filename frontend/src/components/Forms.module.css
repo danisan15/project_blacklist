@@ -8,6 +8,26 @@
   box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
 }
 
+.dropDownBar{
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  align-items: center;
+}
+
+.dropDownBar select{
+  background-color: #6c757d;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  margin-left: 1.3rem;
+  border-radius: 2px;
+}
+
+.dropDownBar option {
+  font-weight: 500;
+}
+
 .inputGroup {
   display: flex;
   align-items: center;

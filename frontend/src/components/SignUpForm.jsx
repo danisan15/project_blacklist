@@ -1,11 +1,93 @@
 import { useForm } from "react-hook-form";
+import { useState, useEffect } from "react";
 import IconsForm from "./IconsForm";
 import FormSwitchLink from "./FormSwitchLink";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  fetchingDataComplete,
+  usePlanPremium,
+  usePlanTop,
+} from "../hooks/usePlan";
 
 import styles from "./Forms.module.css";
+import DropdownBar from "./DropdownBar";
 
 export default function Form() {
+  const [selectedOption, setSelectedOption] = useState("1");
+  const navigate = useNavigate();
+  const urlParams = new URLSearchParams(window.location.search);
+  const userObject = localStorage.getItem(localStorage.key(0));
+
+  const completeOrder = async () => {
+    // Get the URL parameters
+    if (urlParams) {
+      // Access individual parameters
+      const token = urlParams.get("token");
+      const payerID = urlParams.get("PayerID");
+
+      // Do something with the parameters
+      try {
+        const request = {
+          token: token,
+          payerID: payerID,
+        };
+        const requestString = JSON.stringify(request);
+        const params = {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: requestString,
+        };
+        const data = await fetchingDataComplete(params);
+        if (data) {
+          alert("Se ha enviado el correo de verificacion");
+          navigate("/signup");
+        } else alert("Ha habido un error");
+      } catch (error) {
+        console.error(error);
+        navigate("/signup");
+      }
+    } else alert("Ocurrio un error con el pago");
+  };
+
+  const createUser = async () => {
+    try {
+      const userParams = {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: userObject,
+      };
+      const response = await fetch(
+        import.meta.env.VITE_CREATE_USER,
+        userParams
+      );
+      const data = await response.json();
+      if (data) {
+        localStorage.clear();
+        return data;
+      } else alert("Error al crear usuario");
+    } catch (error) {
+      console.error(error);
+      navigate("/signup");
+    }
+  };
+
+  const onLoad = async () => {
+    const result = await createUser();
+    if (result) completeOrder();
+  };
+
+  useEffect(() => {
+    if (urlParams && userObject) onLoad();
+  }, []);
+
+  const handleChange = (currentValue) => {
+    setSelectedOption(currentValue);
+  };
+
   const {
     register,
     handleSubmit,
@@ -15,22 +97,11 @@ export default function Form() {
   } = useForm();
 
   const onSubmit = handleSubmit((data) => {
-    //Logica registrar usuario
-    const URL = import.meta.env.VITE_CREATE_USER;
-    const configurationObject = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(data),
-    };
-
-    fetch(URL, configurationObject)
-      .then((res) => JSON.parse(res))
-      .then((server_res) => console.log(server_res))
-      .catch((err) => console.log(err));
-
+    data.plan = selectedOption;
+    const userString = JSON.stringify(data);
+    localStorage.setItem("user", userString);
+    if (data.plan === "2") usePlanPremium();
+    if (data.plan === "3") usePlanTop();
     reset();
   });
 
@@ -133,6 +204,8 @@ export default function Form() {
           {errors.confirmPassword && (
             <span>{errors.confirmPassword.message}</span>
           )}
+
+          <DropdownBar handleChange={handleChange} />
 
           <button>continuar</button>
 
