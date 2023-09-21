@@ -74,6 +74,7 @@ export default function Form() {
       navigate("/signup");
     }
   };
+
   const onLoad = async () => {
     const result = await createUser();
     if (result) completeOrder();
@@ -101,23 +102,6 @@ export default function Form() {
     localStorage.setItem("user", userString);
     if (data.plan === "2") usePlanPremium();
     if (data.plan === "3") usePlanTop();
-    /*
-    //Logica registrar usuario
-    const URL = import.meta.env.VITE_CREATE_USER;
-    const configurationObject = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(data),
-    };
-
-    fetch(URL, configurationObject)
-      .then((res) => JSON.parse(res))
-      .then((server_res) => console.log(server_res))
-      .catch((err) => console.log(err));
-    */
     reset();
   });
 
