@@ -78,6 +78,7 @@ def create_user():
 
     # Get the user data from the request.
     user_data = request.get_json()
+    
 
     # Verify the email address.
     if verify_email_signup(user_data["email"]) is False:
@@ -87,6 +88,16 @@ def create_user():
         # The email address is valid, so create the user.
         email = user_data["email"]
         password = user_data["password"]
+        plan = user_data["plan"]
+        if plan == "1":
+            request_counter = 20
+        elif plan == "2":
+            request_counter = 1000
+        elif plan == "3":
+            request_counter = 10000
+        else:
+            return jsonify({"error":"No se selecciono ningun plan"}), 500
+        
         result = client.auth.sign_up({
             "email": email,
             "password": password,
@@ -95,6 +106,8 @@ def create_user():
         user_db = {
             "email": email,
             "name": user_data["name"],
+            "fk_plans": plan,
+            "request_counter": request_counter,
         }
         users_table.insert(user_db).execute()
         return jsonify({"res": "Success"}), 200
@@ -186,10 +199,11 @@ def create_order():
         return jsonify({'error': error_message}), err.response.status_code
 
 #When the order is complete
-@app.route('/complete_order')
+@app.route('/complete_order', methods=["POST"])
 def complete_order():
     """"""
-    id_order = request.args.get('token')
+    data = request.get_json()
+    id_order = data["token"]
     access_token = generateToken()
     headers = {
         "Authorization": f"Bearer {access_token}",

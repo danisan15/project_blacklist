@@ -17,9 +17,9 @@ const DropdownBar = ({ handleChange }) => {
         value={selectedOption}
         onChange={handleOptionChange}
       >
-        <option value="free">Plan Free</option>
-        <option value="premium">Plan Premium - $10</option>
-        <option value="top">Plan Top - $30</option>
+        <option value="1">Plan Basico - Gratis</option>
+        <option value="2">Plan Premium - $10</option>
+        <option value="3">Plan Top - $30</option>
       </select>
     </div>
   );

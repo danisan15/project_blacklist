@@ -19,47 +19,10 @@ const PlanCard = ({
     ? "(Incluye soporte)"
     : "(No incluye soporte)";
 
-  async function fetchingData(params, url = import.meta.env.VITE_CREATE_ORDER) {
-    const res = await fetch(url, params);
-    const data = await res.json();
-    window.location.href = data;
-  }
-
   const planTop = async () => {
     if (!isLogged) {
       navigate("/signup");
       return;
-    } else {
-      let planTop = {
-        intent: "CAPTURE",
-        purchase_units: [
-          {
-            reference_id: 1,
-            amount: {
-              currency_code: "USD",
-              value: "30.00",
-            },
-          },
-        ],
-        application_context: {
-          brand_name: "TempBlock",
-          landing_page: "NO_PREFERENCE",
-          user_action: "PAY_NOW",
-          return_url: "https://project-blacklist.vercel.app/",
-          cancel_url: "https://project-blacklist.vercel.app/",
-        },
-      };
-      planTop = JSON.stringify(planTop);
-
-      const params = {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: planTop,
-      };
-      const data = await fetchingData(params);
-      return data;
     }
   };
 
@@ -67,37 +30,6 @@ const PlanCard = ({
     if (!isLogged) {
       navigate("/signup");
       return;
-    } else {
-      let planPremium = {
-        intent: "CAPTURE",
-        purchase_units: [
-          {
-            reference_id: 2,
-            amount: {
-              currency_code: "USD",
-              value: "10.00",
-            },
-          },
-        ],
-        application_context: {
-          brand_name: "TempBlock",
-          landing_page: "NO_PREFERENCE",
-          user_action: "PAY_NOW",
-          return_url: "https://project-blacklist.vercel.app/",
-          cancel_url: "https://project-blacklist.vercel.app/",
-        },
-      };
-
-      planPremium = JSON.stringify(planPremium);
-      const params = {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: planPremium,
-      };
-      const data = fetchingData(params);
-      return data;
     }
   };
 
