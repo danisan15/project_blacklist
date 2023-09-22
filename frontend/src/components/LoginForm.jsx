@@ -31,20 +31,15 @@ export default function LoginForm() {
       password: data.password,
     });
     if (error) {
-      console.error("Login failed:", error.message);
-      if (error.message === "Invalid login credentials") {
-        setError("email", {
-          message: "Email or password is incorrect",
-        });
-        setError("password", {
-          message: "Email or password is incorrect",
-        });
-        setErrorMsg("El usuario o la contraseña son incorrectos");
-      } else {
+      console.log("Hello");
+      setErrorMsg(true);
+      console.error("Login failed:", error);
+      if (error.message !== "Invalid login credentials") {
         alert("Error: " + error.message);
       }
     } else {
-      console.log("Login successful!", user);
+      console.log("Login successful!");
+      localStorage.setItem("userEmail", data.email);
       navigate("/");
       reset();
     }
@@ -93,7 +88,11 @@ export default function LoginForm() {
             />
           </article>
           {errors.password && <span>{errors.password.message}</span>}
-          {errorMsg && <span>{errorMsg}</span>}
+          {errorMsg && (
+            <span style={{ color: "red" }}>
+              El usuario o la contraseña son invalidos
+            </span>
+          )}
 
           <a
             className={styles.forgot}

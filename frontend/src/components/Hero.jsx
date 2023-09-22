@@ -22,6 +22,7 @@ export default function Hero() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email.length === 0) return alert("Inserte el email");
+    const userEmail = localStorage.getItem("userEmail");
     const URL = import.meta.env.VITE_VERIFY_EMAIL_URL;
     const request = {
       method: "POST",
@@ -29,7 +30,7 @@ export default function Hero() {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email: email }),
+      body: JSON.stringify({ email: email, userEmail: userEmail }),
     };
     fetch(URL, request)
       .then((response) => response.json())
@@ -38,9 +39,15 @@ export default function Hero() {
           setIsValid(true);
           setErrorMessage("");
           setSuccessMessage("El email es valido");
-        } else {
+        }
+        if (!data.message) {
           setIsValid(false);
           setErrorMessage("El email es malicioso");
+          setSuccessMessage("");
+        }
+        if (data.message === null) {
+          setIsValid(null);
+          setErrorMessage("Se agotaron las solicitudes");
           setSuccessMessage("");
         }
       })

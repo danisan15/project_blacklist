@@ -60,9 +60,19 @@ def get_users():
 @app.route('/verify_email', methods=['POST'])
 def verify_email():
 
+
     # Get the email address from the request.
     user_data = request.get_json()
     email = user_data['email']
+    user_email = user_data['userEmail']
+    data = client.table("users").select("request_counter").eq("email", user_email).limit(1).execute()
+    request_obj = data.dict()
+    request_counter = request_obj["data"][0]["request_counter"]
+
+    if request_counter == 0:
+        return jsonify({"message": None})
+
+    client.table("users").update({"request_counter": request_counter-1}).eq("email", user_email).execute()
 
     # Verify the email address.
     if verify_email_signup(email) is False:
