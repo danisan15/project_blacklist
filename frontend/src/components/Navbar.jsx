@@ -3,7 +3,7 @@ import Style from "./Navbar.module.css";
 
 import { Link } from "react-router-dom";
 
-export default function Navbar({ isLogged }) {
+export default function Navbar({ isLogged, isFree }) {
   const handleScroll = ({ id }) => {
     const splitId = id.split("-");
     const scrollElement = document.getElementById(splitId[0]);
@@ -35,7 +35,7 @@ export default function Navbar({ isLogged }) {
           </a>
         </li>
 
-        {isLogged ? (
+        {isLogged && !isFree ? (
           <li>
             <a
               className={Style.link}

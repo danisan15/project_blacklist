@@ -6,6 +6,7 @@ import { createClient } from "@supabase/supabase-js";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import getTokenAndUser from "../hooks/useLocalStorage";
 
 export default function LoginForm() {
   const [errorMsg, setErrorMsg] = useState(false);
@@ -31,7 +32,6 @@ export default function LoginForm() {
       password: data.password,
     });
     if (error) {
-      console.log("Hello");
       setErrorMsg(true);
       console.error("Login failed:", error);
       if (error.message !== "Invalid login credentials") {
@@ -39,7 +39,18 @@ export default function LoginForm() {
       }
     } else {
       console.log("Login successful!");
-      localStorage.setItem("userEmail", data.email);
+      let userObject = getTokenAndUser();
+      const { data, error } = await client
+        .from("users")
+        .select("fk_plans")
+        .eq("email", userObject.userEmail)
+        .limit(1);
+      if (error) {
+        console.error(error);
+        alert("Error: " + error.message);
+        return;
+      }
+      localStorage.setItem("fk_plan", data[0].fk_plans);
       navigate("/");
       reset();
     }

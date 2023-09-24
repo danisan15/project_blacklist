@@ -8,6 +8,7 @@ from requests.auth import HTTPBasicAuth
 import os
 import supabase
 import requests
+import json
 
 load_dotenv()
 # Initialize the Flask app.
@@ -15,7 +16,7 @@ app = Flask(__name__)
 #Initialize the CORS extension and specify the allowed origins
 cors_url = os.getenv("ORIGIN_URL")
 # Cors origin
-CORS(app, resources={r"/*": {"origins": cors_url}})
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 SUPABASE_KEY = os.getenv('SUPABASE_KEY')
@@ -149,25 +150,6 @@ def support_email():
     server.quit()
 
     return jsonify({"message": "Email sent"}), 200
-
-@app.route("/resend_magic_link", methods=["POST"])
-def resend_magic_link():
-    sent_email = request.get_json()
-    email = sent_email["email"]
-    url = "https://api.supabase.io/v1/auth/magic-link"
-    headers = {
-        "Authorization": f"Bearer {SUPABASE_KEY}",
-    }
-    data = {
-        "email": email,
-    }
-
-    response = requests.post(url, headers=headers, data=data)
-
-    if response.status_code == 200:
-        return jsonify({"message":'Magic link sent successfully'}), 200
-    else:
-        return jsonify({"message": f"Failed to send magic link: {response.status_code}"}), 500
 
 #PayPal
 

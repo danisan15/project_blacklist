@@ -11,33 +11,45 @@ import imagenTop from "../assets/top.png";
 
 import "../App.css";
 import { useEffect, useState } from "react";
+import getTokenAndUser from "../hooks/useLocalStorage";
 
 const LandingPage = () => {
   const [isLogged, setIsLogged] = useState(false);
+  const [isFree, setIsFree] = useState(false);
 
   useEffect(() => {
-    const tokenObject = JSON.parse(localStorage.getItem(localStorage.key(0)));
-    const token = tokenObject?.access_token;
-    token ? setIsLogged(true) : setIsLogged(false);
+    console.log(localStorage.length);
+    if (localStorage.length > 0) {
+      try {
+        const userObject = getTokenAndUser();
+        userObject?.token ? setIsLogged(true) : setIsLogged(false);
+        let fk_plan = localStorage.getItem("fk_plan");
+        if (fk_plan == "1") setIsFree(true);
+      } catch (error) {
+        console.error(error);
+      }
+    }
   }, []);
 
   return (
     <>
-      <NavBar isLogged={isLogged} />
+      <NavBar isLogged={isLogged} isFree={isFree} />
       <main>
         {isLogged ? <Hero /> : <NoHero />}
 
         <header className="title">Elige el plan más adecuado para ti</header>
 
         <section className="plan-section" id="pricing">
-          <PlanCard
-            img={imagenGratuito}
-            title="Básico"
-            price="Free"
-            descrip="Este plan es ideal si estás empezando y no necesitas muchas solicitudes. Con este plan, tendrás acceso a 20 solicitudes al mes de forma gratuita."
-            buttonText="Empieza gratis"
-            isLogged={isLogged}
-          />
+          {!isLogged ? (
+            <PlanCard
+              img={imagenGratuito}
+              title="Básico"
+              price="Free"
+              descrip="Este plan es ideal si estás empezando y no necesitas muchas solicitudes. Con este plan, tendrás acceso a 20 solicitudes al mes de forma gratuita."
+              buttonText="Empieza gratis"
+              isLogged={isLogged}
+            />
+          ) : null}
 
           <PlanCard
             img={imagenPremium}
@@ -62,7 +74,7 @@ const LandingPage = () => {
             isLogged={isLogged}
           />
         </section>
-        {isLogged ? (
+        {isLogged && !isFree ? (
           <section className="support-section" id="support">
             <Support />
           </section>

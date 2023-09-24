@@ -14,13 +14,14 @@ import DropdownBar from "./DropdownBar";
 
 export default function Form() {
   const [selectedOption, setSelectedOption] = useState("1");
+
   const navigate = useNavigate();
   const urlParams = new URLSearchParams(window.location.search);
-  const userObject = localStorage.getItem(localStorage.key(0));
+  const userObject = localStorage.getItem("user");
 
   const completeOrder = async () => {
     // Get the URL parameters
-    if (urlParams) {
+    if (urlParams.size > 0) {
       // Access individual parameters
       const token = urlParams.get("token");
       const payerID = urlParams.get("PayerID");
@@ -48,18 +49,18 @@ export default function Form() {
         console.error(error);
         navigate("/signup");
       }
-    } else alert("Ocurrio un error con el pago");
+    } //else alert("Ocurrio un error con el pago");
   };
 
   const createUser = async () => {
+    const userParams = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: userObject,
+    };
     try {
-      const userParams = {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: userObject,
-      };
       const response = await fetch(
         import.meta.env.VITE_CREATE_USER,
         userParams
@@ -67,21 +68,20 @@ export default function Form() {
       const data = await response.json();
       if (data) {
         localStorage.clear();
-        return data;
+        navigate("/login");
       } else alert("Error al crear usuario");
     } catch (error) {
       console.error(error);
-      navigate("/signup");
     }
   };
 
   const onLoad = async () => {
     const result = await createUser();
-    if (result) completeOrder();
+    const response = await completeOrder();
   };
 
   useEffect(() => {
-    if (urlParams && userObject) onLoad();
+    if (urlParams.size > 0 && userObject) onLoad();
   }, []);
 
   const handleChange = (currentValue) => {
@@ -100,6 +100,7 @@ export default function Form() {
     data.plan = selectedOption;
     const userString = JSON.stringify(data);
     localStorage.setItem("user", userString);
+    if (data.plan === "1") createUser(data);
     if (data.plan === "2") usePlanPremium();
     if (data.plan === "3") usePlanTop();
     reset();
@@ -171,7 +172,6 @@ export default function Form() {
             />
           </article>
           {errors.name && <span>{errors.name.message}</span>}
-
           <article className={styles.inputGroup}>
             <IconsForm type="email" />
             <input
@@ -182,7 +182,6 @@ export default function Form() {
             />
           </article>
           {errors.email && <span>{errors.email.message}</span>}
-
           <article className={styles.inputGroup}>
             <IconsForm type="password" />
             <input
@@ -192,7 +191,6 @@ export default function Form() {
             />
           </article>
           {errors.password && <span>{errors.password.message}</span>}
-
           <article className={styles.inputGroup}>
             <IconsForm type="confirmPassword" />
             <input
@@ -204,7 +202,6 @@ export default function Form() {
           {errors.confirmPassword && (
             <span>{errors.confirmPassword.message}</span>
           )}
-
           <DropdownBar handleChange={handleChange} />
 
           <button>continuar</button>

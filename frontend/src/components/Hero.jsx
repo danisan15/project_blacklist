@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Style from "./Hero.module.css";
+import getTokenAndUser from "../hooks/useLocalStorage";
 
 export default function Hero() {
   const [email, setEmail] = useState("");
@@ -22,7 +23,8 @@ export default function Hero() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email.length === 0) return alert("Inserte el email");
-    const userEmail = localStorage.getItem("userEmail");
+    const userObject = getTokenAndUser();
+    console.log(userObject);
     const URL = import.meta.env.VITE_VERIFY_EMAIL_URL;
     const request = {
       method: "POST",
@@ -30,7 +32,10 @@ export default function Hero() {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email: email, userEmail: userEmail }),
+      body: JSON.stringify({
+        email: email,
+        userEmail: userObject["userEmail"],
+      }),
     };
     fetch(URL, request)
       .then((response) => response.json())
