@@ -1,6 +1,8 @@
 # Project BlackList Team 1 💻
 
+<a href="https://project-blacklist.vercel.app/">
 <img width="400" src="frontend/src/assets/logo_uno.png" />
+<a/>
 
 ¡Olvídate de los correos temporales!
 Mantén limpio y seguro tu base de datos con nuestra plataforma.
