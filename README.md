@@ -26,17 +26,18 @@ git clone https://github.com/danisan15/project_blacklist.git
 
 ### Cree un entorno virtual en el backend
 
-Este script creara un entorno virtual en el backend
+Este script creara un entorno virtual en el backend.
 
-```shell
 En Windows:
 
+```shell
 cd backend
 python -m venv myenv
 env\Scripts\activate
+```
 
-En Linux:
-
+En Linux
+```bash
 cd backend
 python3 -m venv myenv
 source myenv/bin/activate
@@ -44,11 +45,11 @@ source myenv/bin/activate
 
 ### Instale los modulos del backend
 
-Este script instalara los modulos del backend
+Este script instalara los modulos del backend.
 
-```cmd
 En Windows o Linux:
 
+```cmd
 pip install -r requirements.txt
 ```
 
@@ -56,9 +57,9 @@ pip install -r requirements.txt
 
 Estos script instalaran las dependencias del frontend.
 
-```cmd
 En Windows o Linux:
 
+```cmd
 cd frontend
 npm install
 ```
@@ -66,31 +67,35 @@ npm install
 
 ## Ejecucion local ⚙️
 
-<span style="color: green;">Ejecutar frontend:</span>
+Ejecutar frontend.
 
-```cmd
 En Windows o Linux:
 
+```cmd
 cd frontend
 npm run dev #
 ```
 
-<span style="color: blue;">Ejecutar backend:</span>
+Ejecutar backend.
 
-```cmd
 En Windows o Linux:
 
+```cmd
 cd backend
 flask run #
 ```
 
 ## Tecnologías utilizadas 📲
 
-- [Python] <a href="https://www.python.org/" target="_blank"><img width="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png" /><a/>: es un lenguaje de alto nivel de programación interpretado cuya filosofía hace hincapié en la legibilidad de su código,
-- [Sheet.best]: es una plataforma que convierte las hojas de cálculo en API REST.
+
+- [Python] <a href="https://www.python.org/" target="_blank"><img width="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png" /><a/> : es un lenguaje de alto nivel de programación interpretado cuya filosofía hace hincapié en la legibilidad de su código,
+- [Supabase] <a href="https://supabase.com/" target="_blank"><img width="30" src="https://seeklogo.com/images/S/supabase-logo-DCC676FFE2-seeklogo.com.png" /><a/> : es una alternativa de Firebase de código abierto que ofrece backend como servicio para una variedad de aplicaciones.
+- [Paypal] <a href="https://www.paypal.com/ve/home" target="_blank"><img width="35" src="https://brandlogos.net/wp-content/uploads/2021/11/paypal-logo.png"/><a/> : un servicio que te permite pagar, enviar dinero y aceptar pagos sin tener que introducir tus datos financieros continuamente.
+- [Sheet.best] <a href="https://sheet.best/" target="_blank"><img width="60" src="https://sheet.best/images/logo.svg" /><a/> : es una plataforma que convierte las hojas de cálculo en API REST.
 - [Node.js] <a href="https://nodejs.org/es" target="_blank"><img width="45" src="https://nodejs.dev/static/images/brand/logos-js-bottom/light.svg" /><a/> : es un entorno en tiempo de ejecución multiplataforma, de código abierto, basado en el lenguaje de programación JavaScript y basado en el motor V8 de Google.
-  - [Vite] <a href="https://vitejs.dev/" target="_blank"><img width="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Vitejs-logo.svg/1039px-Vitejs-logo.svg.png" /><a/>: es un entorno de desarrollo web extremadamente rápido y ligero para la creación de aplicaciones web modernas en JavaScript y TypeScript.
-  - [React] <a href="https://es.react.dev/" target="_blank"><img width="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png" /><a/>: es una librería Javascript de código abierto diseñada para crear interfaces de usuario con el objetivo de facilitar el desarrollo de aplicaciones en una sola página.
+  - [Vite] <a href="https://vitejs.dev/" target="_blank"><img width="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Vitejs-logo.svg/1039px-Vitejs-logo.svg.png" /><a/> : es un entorno de desarrollo web extremadamente rápido y ligero para la creación de aplicaciones web modernas en JavaScript y TypeScript.
+  - [React] <a href="https://es.react.dev/" target="_blank"><img width="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png" /><a/> : es una librería Javascript de código abierto diseñada para crear interfaces de usuario con el objetivo de facilitar el desarrollo de aplicaciones en una sola página.
+
 
 ## Estructura del proyecto 🏛️
 
