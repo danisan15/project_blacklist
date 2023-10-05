@@ -33,7 +33,7 @@ En Windows:
 ```shell
 cd backend
 python -m venv myenv
-env\Scripts\activate
+myenv\Scripts\activate
 ```
 
 En Linux
