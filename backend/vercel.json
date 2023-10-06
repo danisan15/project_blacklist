@@ -28,7 +28,8 @@
       "ORIGIN_URL": "https://project-blacklist.vercel.app",
       "PAYPAL_CLIENT_ID": "ATr59CIWXqptMdG6CUNcfdKfQwvZ75Jielw4IO11vies8y-XQfdKCif75s_Jj_fHFgzJD7HkwOPMyXQ4",
       "PAYPAL_SECRET_KEY": "EB__jA9jloKFy333A74kgVSY_WXS6nqX4hsujs27Kn2R0v-5TZ2QD353cmPfArBHcySTLC1hWdJb3COn",
-      "COINBASE_API_KEY": "ff13626d-370f-4770-96b4-82d2553baee8"
+      "COINBASE_API_KEY": "ff13626d-370f-4770-96b4-82d2553baee8",
+      "CRYPTO_REDIRECT_URL": "http://project-blacklist.vercel.app/signup"
     }
   }
 }

@@ -19,7 +19,8 @@
       "VITE_CREATE_ORDER": "https://project-blacklist-backend.vercel.app/create_order",
       "VITE_ORIGIN_URL": "https://project-blacklist.vercel.app",
       "VITE_SIGN_UP": "https://project-blacklist.vercel.app/signup",
-      "VITE_COMPLETE_ORDER": "https://project-blacklist-backend.vercel.app/complete_order"
+      "VITE_COMPLETE_ORDER": "https://project-blacklist-backend.vercel.app/complete_order",
+      "VITE_CREATE_ORDER_CRYPTO": "http://project-blacklist-backend.vercel.app/proccess_payment_crypto"
     }
   }
 }
