@@ -6,7 +6,8 @@
     { "source": "/confirmEmail", "destination": "/" },
     { "source": "/support", "destination": "/" },
     { "source": "/forgot_password", "destination": "/" },
-    { "source": "/update_password", "destination": "/" }
+    { "source": "/update_password", "destination": "/" },
+    { "source": "/select_payment", "destination": "/" }
   ],
   "build": {
     "env": {

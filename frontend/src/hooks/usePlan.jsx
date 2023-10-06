@@ -90,7 +90,7 @@ const useCoinbase = async (
       amount: "10",
     };
     const request = {
-      method: "POST",
+      method: "post",
       headers: {
         "Content-Type": "application/json",
       },
@@ -107,7 +107,7 @@ const useCoinbase = async (
       amount: "30",
     };
     const request = {
-      method: "POST",
+      method: "post",
       headers: {
         "Content-Type": "application/json",
       },
