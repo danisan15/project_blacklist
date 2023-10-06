@@ -97,8 +97,8 @@ const useCoinbase = async (
       body: JSON.stringify(bodyPremium),
     };
     const res = await fetch(url, request);
-    const data = await res.json();
-    window.location.href = data.data?.hosted_url;
+    const fetchedData = await res.json();
+    window.location.href = fetchedData.data?.hosted_url;
   }
   if (plan == 3) {
     const bodyTop = {
@@ -114,8 +114,8 @@ const useCoinbase = async (
       body: JSON.stringify(bodyTop),
     };
     const res = await fetch(url, request);
-    const data = await res.json();
-    window.location.href = data.data?.hosted_url;
+    const fetchedData = await res.json();
+    window.location.href = fetchedData.data?.hosted_url;
   }
 };
 
