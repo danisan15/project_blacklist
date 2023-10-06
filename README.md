@@ -91,6 +91,7 @@ flask run #
 - [Python] <a href="https://www.python.org/" target="_blank"><img width="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png" /><a/> : es un lenguaje de alto nivel de programación interpretado cuya filosofía hace hincapié en la legibilidad de su código,
 - [Supabase] <a href="https://supabase.com/" target="_blank"><img width="30" src="https://seeklogo.com/images/S/supabase-logo-DCC676FFE2-seeklogo.com.png" /><a/> : es una alternativa de Firebase de código abierto que ofrece backend como servicio para una variedad de aplicaciones.
 - [Paypal] <a href="https://www.paypal.com/ve/home" target="_blank"><img width="35" src="https://brandlogos.net/wp-content/uploads/2021/11/paypal-logo.png"/><a/> : un servicio que te permite pagar, enviar dinero y aceptar pagos sin tener que introducir tus datos financieros continuamente.
+- [Coinbase] <a href="https://www.coinbase.com/es" target="_blank"><img width="50" src="https://seeklogo.com/images/C/coinbase-new-2021-logo-FA5145228F-seeklogo.com.png"/><a/> : es una plataforma online segura para comprar, vender, transferir y almacenar criptomonedas.
 - [Sheet.best] <a href="https://sheet.best/" target="_blank"><img width="60" src="https://sheet.best/images/logo.svg" /><a/> : es una plataforma que convierte las hojas de cálculo en API REST.
 - [Node.js] <a href="https://nodejs.org/es" target="_blank"><img width="45" src="https://nodejs.dev/static/images/brand/logos-js-bottom/light.svg" /><a/> : es un entorno en tiempo de ejecución multiplataforma, de código abierto, basado en el lenguaje de programación JavaScript y basado en el motor V8 de Google.
   - [Vite] <a href="https://vitejs.dev/" target="_blank"><img width="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Vitejs-logo.svg/1039px-Vitejs-logo.svg.png" /><a/> : es un entorno de desarrollo web extremadamente rápido y ligero para la creación de aplicaciones web modernas en JavaScript y TypeScript.
@@ -127,7 +128,9 @@ PAYPAL_CLIENT_ID_2 =
 PAYPAL_SECRET_KEY_2 =
 SUPABASE_KEY = 
 SUPABASE_URL = 
-ORIGIN_URL = 
+ORIGIN_URL =
+COINBASE_API_KEY = 
+CRYPTO_REDIRECT_URL =
 ```
 
 Frontend:
@@ -142,7 +145,8 @@ VITE_CREATE_USER =
 VITE_CREATE_ORDER = 
 VITE_ORIGIN_URL = 
 VITE_SIGN_UP = 
-VITE_COMPLETE_ORDER = 
+VITE_COMPLETE_ORDER =
+VITE_CREATE_ORDER_CRYPTO =
 ```
 
 ## Derechos de autor 📝
