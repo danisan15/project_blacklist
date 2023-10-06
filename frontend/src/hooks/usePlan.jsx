@@ -79,4 +79,44 @@ const usePlanTop = async () => {
   return data;
 };
 
-export { usePlanPremium, usePlanTop, fetchingDataComplete };
+const useCoinbase = async (
+  plan,
+  url = import.meta.env.VITE_CREATE_ORDER_CRYPTO
+) => {
+  if (plan == 2) {
+    const bodyPremium = {
+      plan: "Plan Premium",
+      plan_description: "Acceso 1.000 peticiones al mes, soporte",
+      amount: "10",
+    };
+    const request = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bodyPremium),
+    };
+    const res = await fetch(url, request);
+    const data = await res.json();
+    window.location.href = data.data?.hosted_url;
+  }
+  if (plan == 3) {
+    const bodyTop = {
+      plan: "Plan Top",
+      plan_description: "Acceso 10.000 peticiones al mes, soporte",
+      amount: "30",
+    };
+    const request = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bodyTop),
+    };
+    const res = await fetch(url, request);
+    const data = await res.json();
+    window.location.href = data.data?.hosted_url;
+  }
+};
+
+export { usePlanPremium, usePlanTop, fetchingDataComplete, useCoinbase };

@@ -3,12 +3,11 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-import smtplib
 from requests.auth import HTTPBasicAuth
-import os
+import os, json
+import smtplib
 import supabase
 import requests
-import json
 
 load_dotenv()
 # Initialize the Flask app.
@@ -151,6 +150,44 @@ def support_email():
 
     return jsonify({"message": "Email sent"}), 200
 
+#Coinbase
+
+@app.route('/proccess_payment_crypto', methods=['POST'])
+def process_payment_crypto():
+
+    data = request.get_json()
+    print(data)
+
+    payload = json.dumps({
+    "name": data["plan"],
+    "description": data["plan_description"],
+    "pricing_type": "fixed_price",
+    "local_price": {
+        "amount": data["amount"],
+        "currency": "USD"
+    },
+    "cancel_url": os.getenv("ORIGIN_URL"),
+    "redirect_url": os.getenv("CRYPTO_REDIRECT_URL"),
+    "crypto": {
+    "enabled": True,
+    "currencies": ["BTC", "ETH", "LTC"]
+    }
+    })
+    headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'X-CC-Api-Key': os.getenv("COINBASE_API_KEY"),
+    "X-CC-Version": "2018-03-22" 
+    }
+
+    url = "https://api.commerce.coinbase.com/charges"
+    
+    response = requests.post(url, headers=headers, data=payload)
+    res = response.json()
+    
+    return jsonify(res), 200
+
+
 #PayPal
 
 def generateToken():
@@ -164,13 +201,6 @@ def generateToken():
     response = response.json()
     
     return response['access_token']
-
-# @app.after_request
-# def add_cors(response):
-#     response.headers.add('Access-Control-Allow-Origin', 'http://localhost:5173')
-#     response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-#     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
-#     return response
    
 @app.route('/create_order', methods=['POST'])
 def create_order():

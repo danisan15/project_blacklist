@@ -3,11 +3,7 @@ import { useState, useEffect } from "react";
 import IconsForm from "./IconsForm";
 import FormSwitchLink from "./FormSwitchLink";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  fetchingDataComplete,
-  usePlanPremium,
-  usePlanTop,
-} from "../hooks/usePlan";
+import { fetchingDataComplete } from "../hooks/usePlan";
 
 import styles from "./Forms.module.css";
 import DropdownBar from "./DropdownBar";
@@ -101,8 +97,7 @@ export default function Form() {
     const userString = JSON.stringify(data);
     localStorage.setItem("user", userString);
     if (data.plan === "1") createUser(data);
-    if (data.plan === "2") usePlanPremium();
-    if (data.plan === "3") usePlanTop();
+    if (data.plan === "2" || data.plan === "3") navigate("/select_payment");
     reset();
   });
 
